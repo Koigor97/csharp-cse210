@@ -1,4 +1,4 @@
-<img src="csharp.webp" alt="C-Sharp orgramming language logo" width=70 height="70">
+<img src="csharp.webp" alt="C-Sharp orgramming language logo" width=80 height="80">
 
 # cse210-ww-student-template
 
