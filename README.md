@@ -31,3 +31,24 @@ The course is structured this way - per week ↓
 - `Develop` working software using the techniques of programming with classes.
 
 ---
+
+### Week-01:
+
+Week1 is all about setting up our developer environment installing the needed software and tools. The lessons and activities introduce us to syntax of C# programming language. Since the previous semester was programming with functions in Python, similarities and difference were made with Python. For example, the way variables are declared/defined, functions, lists etc. These difference were taught in a pragmatic way with learning activities, to prep us.  
+Example code snippets:
+
+```c#
+    Console.Write("Enter the your grade (please omit the '%' sign ): ");
+        string theGrade = Console.ReadLine();
+
+        if (int.TryParse(theGrade, out int studentGrade))
+        {
+            string letterGrade = "";
+            char plusOrMinus = studentGrade % 10 >= 7 ? '+' : '-';
+
+            if (studentGrade >= 90)
+            {
+                letterGrade = $"A{(plusOrMinus == '+' ? ' ' : plusOrMinus)}";
+            }
+        }
+```
