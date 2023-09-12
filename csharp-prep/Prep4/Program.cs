@@ -11,7 +11,7 @@ class Program
         int userInput;
         int sum = 0;
         int largestNumber = 0;
-        int smallestPositiveNumber = 100_000_000;
+        int smallestPositiveNumber = listOfNumbers[0];
 
         do
         { 
