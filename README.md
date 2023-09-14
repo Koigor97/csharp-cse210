@@ -83,13 +83,13 @@ In cases of programs intended for science or finance, float just doesn't suffice
 - **_double_** store any number from **±5.0 × 10–324 to ±1.7 × 10308** with 15–17 significant digits.
 - **_decimal_** store any number from **±1.0 × 10–28 to ±7.9 × 1028** with 28–29 significant digits. It is commonly used wghen dealing with money or currency. It has a lot more precision.
 
-**Strings**... Strings are characters string together (pun intended 😃), specially unicode characters. Now in C#, if you want to use a single character like `@` or `s`, you the **char** type accompany with a single quote like this `char aLetter = 'k'` oppose to `string myInitials = "ST"`. In any .NET application, string is an object of the **System** namespace - `System.String`.  
+**Strings**... Strings are characters strung together (pun intended 😃), specially unicode characters. Now in C#, if you want to use a single character like `@` or `s`, you the **char** type accompany with a single quote like this `char aLetter = 'k'` oppose to `string myInitials = "ST"`. In any .NET application, string is an object of the **System** namespace - `System.String`.  
 C# also have **Object** which are like dictionaries in Python. They are also from the System namespace.
 
 Variables are like boxes we can store our data. In C#, these boxes different sizes of data values. For example:
-|byte|short|int|long|
-|:--:|:--:|:--:|:--:|
-|8bits|16bits|32bits|64bits|
+|byte|short|int|long|float|double|decimal|bool|char|string|
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|8bits|16bits|32bits|64bits|32bits|64bits|128bits|8bits|16bits|Depends on the size|
 
 C# being a gentle man, gives us a static class (which means we don't need to instantiate) called **Convert**, that convert between two different data types. Example:
 
