@@ -52,3 +52,29 @@ Example code snippets:
             }
         }
 ```
+
+#### Further studies and research 🕵🏾‍♂️ :
+
+In Software development or programming in general, almost everything involves **Working with data** one way or the other. You take an input or information from the user and compute, store, or generation new information to give back to the user  
+In C# and other programming languages, variables are defined by **_types_**. This determines what kind of data can be stored. C# offers many built-in types. Apart from the usual types like:
+
+- `int` - that can store any integer from -2,147,483,648 to 2,147,483,647. They don't have decimal points.
+- `float` - can store real numbers with up to 8 significant digits.
+- `double` floats big brother (or so I think lol), can store real numbers up 16 sugnificant digits. It's common when working with XAML properties.
+- `string` can hold text of any length and that includes empty strings - " ".
+- `bool` short for boolean values - **true** or **false**.
+
+There are other types for storing integers:
+
+- **_byte_** stores any integer between **0 to 255**.
+- **_sbyte_**('s' means **signed**) store any integer from **-128 to 127**.
+- **_short_** store any integer from **-32,768 to 32,767**.
+- **_long_** store any integer from **–9,223,372,036,854,775,808 to 9,223,372,036,854,775,807.**  
+  The unsigned version of int, short and long:
+- **_uint_** store any whole number from **0 to 65,535.**
+- **_ushort_** store any whole number from **0 to 4,294,967,295.**
+- **_ulong_** store any whole number from **0 to 18,446,744,073,709,551,615.**
+
+In cases of programs intended for science or finance, float just doesn't suffice. C#, you guessed it, then gives us different floating-point types to handle tiny and huge values:
+
+> before that, ±1.5 × 10–~45~ to ±3.4 × 10~38~ means 34 followed by 37 zeros, and -.00...(40 more zeros)...0015.
