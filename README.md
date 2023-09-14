@@ -77,4 +77,28 @@ There are other types for storing integers:
 
 In cases of programs intended for science or finance, float just doesn't suffice. C#, you guessed it, then gives us different floating-point types to handle tiny and huge values:
 
-> before that, ±1.5 × 10–~45~ to ±3.4 × 10~38~ means 34 followed by 37 zeros, and -.00...(40 more zeros)...0015.
+> before that, ±1.5 × 10–45 to ±3.4 × 1038 means 34 followed by 37 zeros, and -.00...(40 more zeros)...0015.
+
+- **_float_** store any number from **±1.5 × 10–45 to ±3.4 × 1038** with 6–9 significant digits.
+- **_double_** store any number from **±5.0 × 10–324 to ±1.7 × 10308** with 15–17 significant digits.
+- **_decimal_** store any number from **±1.0 × 10–28 to ±7.9 × 1028** with 28–29 significant digits. It is commonly used wghen dealing with money or currency. It has a lot more precision.
+
+**Strings**... Strings are characters string together (pun intended 😃), specially unicode characters. Now in C#, if you want to use a single character like `@` or `s`, you the **char** type accompany with a single quote like this `char aLetter = 'k'` oppose to `string myInitials = "ST"`. In any .NET application, string is an object of the **System** namespace - `System.String`.  
+C# also have **Object** which are like dictionaries in Python. They are also from the System namespace.
+
+Variables are like boxes we can store our data. In C#, these boxes different sizes of data values. For example:
+|byte|short|int|long|
+|:--:|:--:|:--:|:--:|
+|8bits|16bits|32bits|64bits|
+
+C# being a gentle man, gives us a static class (which means we don't need to instantiate) called **Convert**, that convert between two different data types. Example:
+
+```C#
+    Convert.ToByte("10111", 2)   // returns 23
+    Convert.ToInt16("111111111111111", 2);   // returns 32767
+    Convert.ToInt32("1111111111111111111111111111111", 2);   // returns 2147483647
+```
+
+> The first argument to Convert.ToByte/Int is the number to convert, and the second is its base. Binary numbers are base 2.
+
+The same goes for other types having different sizes too.
