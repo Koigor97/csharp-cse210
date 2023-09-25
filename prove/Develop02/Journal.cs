@@ -44,7 +44,7 @@ public class Journal
         {
             Console.WriteLine(prompt);
             string output = Console.ReadLine();
-            outputFile.WriteLine($"----------------------------------------------------- File Name: {_fileName}------------------------------------------------------------------\n-------------------------------------------------Date of Entry: {_date}--------------------------------------------------------\nQues: {prompt}\n>> ans: {output}\n");
+            outputFile.WriteLine($"--------- File Name: {_fileName}--------------\n-----------Date of Entry: {_date}---------\nQues: {prompt}\n>> ans: {output}\n");
             Console.WriteLine("");
             Console.WriteLine("Your New Journal has been saved 📥");
         }
