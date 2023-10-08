@@ -11,9 +11,11 @@ public class Breathing : Activity
     }
     private void Breath ()
     {
+        DateTime date = DateTime.Now;
         WelcomeMsg(_activityName, _introMsg);
-        int breathingLength = GetTimer();
-        int numOfInterval = 6;
+        DateTime future = date.AddSeconds(GetSessionTime());
+        int breathingLength = 5;
+        
         do
         {
             Console.Write("breathe IN...😌 ");
@@ -21,8 +23,7 @@ public class Breathing : Activity
             Console.Write("breathe OUT...😮‍💨 ");
             CountDown(breathingLength);
             Console.WriteLine("");
-            numOfInterval--;
-        } while (numOfInterval >= 0);
+        } while (DateTime.Now < future);
         CompletionMsg(GetSessionTime(), _activityName);
     }
 

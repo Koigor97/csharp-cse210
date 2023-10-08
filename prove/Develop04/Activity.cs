@@ -9,22 +9,11 @@ public class Activity
 {
     private string _promptsPath = "prompts/";
     private int _sessionTime;
-    private string _userName = "Buddy";
-
-    private int theTimer;
-
     private string[] _animation = {"|", "/", "-", "\\", "|", "/", "-", "\\"};
     
-    public Activity (string name = "", int session = 0)
+    public Activity (int session = 0)
     {
-        _userName = name;
         _sessionTime = session;
-    }
-
-    public void SetUserName () {
-        Console.Write("Enter your name 😊: ");
-        _userName = Console.ReadLine();
-        Console.Clear();
     }
 
     public void SetSessionTime () 
@@ -33,27 +22,23 @@ public class Activity
         _sessionTime = int.Parse(Console.ReadLine());
         
     }
-    public string GetUserName ()
-    {
-        return _userName;
-    }
+
     public void WelcomeMsg(string activity, string msg)
     {
         Console.WriteLine($"Welcome to the {activity} Activity.\n");
         Console.WriteLine($"{msg}\n");
         SetSessionTime();
-        theTimer = GetSessionTime();
         Console.Clear();
         Console.WriteLine("Get ready...");
-        GetAnimation(theTimer);
+        GetAnimation(5);
 
     }
 
     public void CompletionMsg (int session, string activity)
     {
-        Console.WriteLine($"\nWell done!!! {GetUserName()}");
+        Console.WriteLine("\nWell done!!!");
         Console.WriteLine($"You have completed another {session} seconds of the {activity} Activity.");
-        GetAnimation(theTimer);
+        GetAnimation(5);
         Console.Clear();
     }
 
@@ -88,11 +73,6 @@ public class Activity
     public int GetSessionTime ()
     {
         return _sessionTime;
-    }
-
-    public int GetTimer()
-    {
-        return theTimer;
     }
 
     public bool TheClock(int num, int activity = 0) 

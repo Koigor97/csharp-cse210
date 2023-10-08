@@ -29,9 +29,9 @@ public class Reflection : Activity
     private void PonderPrompts()
     {
         Console.Write($"> {GetPrompt(_UsedFollowUpPrompt, _followUpFileName)} ");
-        GetAnimation(GetTimer() + 3);
+        GetAnimation(5);
         Console.Write($"> {GetPrompt(_UsedFollowUpPrompt, _followUpFileName)} ");
-        GetAnimation(GetTimer() + 3);
+        GetAnimation(5);
         CompletionMsg(GetSessionTime(), _activityName);
     }
 
