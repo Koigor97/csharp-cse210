@@ -10,7 +10,7 @@ class Program
         Listing listing = new Listing();
         Console.WriteLine("\n--------------------------- ⊰ Welcome To The Mindfulness Activity ⊱ -------------------------\n");
         Console.WriteLine("\n-------------------------🪧 (Select the Activity that you want by it number) 🪧 -------------------------\n");
-        asset.SetUserName();
+        Console.Clear();
         int userChoice;
         
         do
