@@ -2,7 +2,7 @@
 public class CheckListGoal : Goal
 {
     private string _typeOfGoal;
-    private int _amountCompleted;
+    private int _amountCompleted = 0;
     private int _target;
     private int _bonus;
 
@@ -15,21 +15,40 @@ public class CheckListGoal : Goal
 
     public override void RecordEvent()
     {
-        throw new NotImplementedException();
+        if (isComplete() && GetAmountCompleted() == _target)
+        {
+            AddSetPointToCurrentPoint();
+            SetCheckMark();
+        }
+        else
+        {
+            AddSetPointToCurrentPoint();
+            SetAmountCompleted();
+        }
     }
 
-    public override bool isComplete(bool param)
+    public override bool isComplete(bool param = false)
     {
-        throw new NotImplementedException();
+        return param;
     }
 
     public override string GetDetailsString()
     {
-        return base.GetDetailsString();
+        return $"{GetCheckMark()} {_shortName} - {_description} -- Progress status {GetAmountCompleted()}/{_target}";
     }
 
     public override string GetStringRepresentation()
     {
-        throw new NotImplementedException();
+        return $"{_typeOfGoal}: {_shortName} | {_description} | {_setPoints} | {_bonus} | {_target} | {GetAmountCompleted()}";
+    }
+
+    public void SetAmountCompleted()
+    {
+        _amountCompleted++;
+    }
+
+    public int GetAmountCompleted()
+    {
+        return _amountCompleted;
     }
 }
