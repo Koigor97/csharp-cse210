@@ -10,17 +10,20 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        
+        if (isComplete())
+        {
+            AddSetPointToCurrentPoint();
+        }
     }
 
-    public override bool isComplete(bool param)
+    public override bool isComplete(bool param = false)
     {
          return param;
     }
 
     public override string GetStringRepresentation()
     {
-        return $"{_typeOfGoal}: {base._shortName} | {base._description} | {base._points}";
+        return $"{_typeOfGoal}: {_shortName} | {_description} | {_setPoints}";
     }
 
 
