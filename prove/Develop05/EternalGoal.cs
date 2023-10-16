@@ -10,15 +10,15 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        if (isComplete())
+        if (IsComplete())
         {
             AddSetPointToCurrentPoint();
         }
     }
 
-    public override bool isComplete(bool param = false)
+    public override bool IsComplete()
     {
-         return param;
+         return false;
     }
 
     public override string GetStringRepresentation()
