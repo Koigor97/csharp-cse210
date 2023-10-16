@@ -3,7 +3,7 @@
 public class GoalManager
 {
     private List<Goal> _goals = new ();
-    private int _score = 0;
+    private int _score;
 
     private int _count = 0;
 
@@ -16,11 +16,13 @@ public class GoalManager
 
     public void Start()
     {
+        
         string theMenu = "\n1. Create New Goal ⚽️ | 2. List Goals 🧾 | 3. Save Goals 🗳️ | 4. Load Goals ♽ | 5. Record Event 📝 | 6. Quit ❌\n";
         bool isAppOn = true;
 
         do
         {
+            DisplayPlayerPoint();
             Console.WriteLine(theMenu);
             Console.Write("Select a choice from the menu: ");
             int userChoice = int.Parse(Console.ReadLine());
@@ -57,7 +59,7 @@ public class GoalManager
 
     private  void DisplayPlayerPoint()
     {
-        Console.WriteLine($"You now have {_score} points");
+        Console.WriteLine($"\nYou have {_score} points");
     }
 
     private void ListGoalNames()
@@ -96,7 +98,7 @@ public class GoalManager
 
     private void CreateGoal()
     {
-        string[] goalTypes = {"😌 Simple Goal", "😇 Eternal Goals", "☑️  Checklist Goals"};
+        string[] goalTypes = {"Simple Goal", "Eternal Goals", "Checklist Goals"};
         Console.WriteLine($"\nThe types of goals are: 1. {goalTypes[0]} | 2. {goalTypes[1]} | 3. {goalTypes[2]}");
         Console.Write("\nWhat type of goal do you want create?: ");
         int typeOfGoal = int.Parse(Console.ReadLine()) - 1;
@@ -129,10 +131,11 @@ public class GoalManager
         int goalCompleteIndex = int.Parse(Console.ReadLine());
 
         Goal goalAccomplished = _goals[goalCompleteIndex - 1];
-        goalAccomplished.isComplete(true);
+        goalAccomplished.SetIsCompleteToTrue();
+        goalAccomplished.RecordEvent();
         _score += goalAccomplished.GetCurrentPoint();
 
-        string congratMessage = $"\n🎉Congratulations🎉! You have earned {goalAccomplished.GetSetPoint()}";
+        string congratMessage = $"\n🎉Congratulations🎉! You have earned {goalAccomplished.GetSetPoint()}\nYou now have {_score} points";
         Console.WriteLine(congratMessage);
         DisplayPlayerPoint();
     }
@@ -159,20 +162,25 @@ public class GoalManager
 
     private void LoadGoals()
     {
-        string[] files = Directory.GetFiles(_folderPath); 
-        Console.WriteLine("These are the saved files 📑:");
-        foreach (string file in files)    
+        string[] files = Directory.GetFiles(_folderPath);
+
+        if (files.Length != 0)
         {
-            _count++;
-            Console.WriteLine($"{_count}. {Path.GetFileNameWithoutExtension(file)} 📄");
-        }
-        _count = 0;
+            Console.WriteLine("These are the saved files 📑:");
+            foreach (string file in files)    
+            {
+                _count++;
+                Console.WriteLine($"{_count}. {Path.GetFileNameWithoutExtension(file)} 📄");
+            }
+            _count = 0;
 
-        Console.Write("Choose the file to load (by it number): ");
-        int choosenFile = int.Parse(Console.ReadLine());
-        string[] fileContent = File.ReadAllLines(files[choosenFile - 1]);
+            Console.Write("Choose the file to load (by it number): ");
+            int choosenFile = int.Parse(Console.ReadLine());
+            string[] fileContent = File.ReadAllLines(files[choosenFile - 1]);
 
-        _goals.AddRange(ConvertToGoalObjects(fileContent));
+            _goals.AddRange(ConvertToGoalObjects(fileContent));
+        } 
+        else Console.WriteLine("There are no files saved in your Saved-Folder");
     }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -214,6 +222,7 @@ public class GoalManager
     
     private List<Goal> ConvertToGoalObjects(string[] param)
     {
+        _score = int.Parse(param[0]);
         char colon = ':';
         char pipe = '|';
         int start = 1;
@@ -225,22 +234,35 @@ public class GoalManager
         foreach (string list in param)
         {
             string[] parts = list.Split(colon);
-            string goalName = parts[0];
+            string goalName = parts[0].Trim();
             string[] contents = parts[1].Split(pipe);
 
-            if (goalName == "😌 Simple Goal")
+            if (goalName == "Simple Goal")
             {
-                SimpleGoal simpleGoal = new(name: contents[0], description: contents[1], points: int.Parse(contents[2]), goal: goalName);
+                SimpleGoal simpleGoal = new(name: contents[0].Trim(), description: contents[1].Trim(), points: int.Parse(contents[2].Trim()), goal: goalName);
+                bool isComplete = bool.Parse(contents[3]);
+                if (isComplete) 
+                {
+                    simpleGoal.SetCheckMark();
+                    simpleGoal.SetIsCompleteToTrue();
+                }
                 initialGoal.Add(simpleGoal);
             }
-            else if (goalName == "😇 Eternal Goals")
+            if (goalName == "Eternal Goals")
             {
-                EternalGoal eternalGoal = new (name: contents[0], description: contents[1], points: int.Parse(contents[2]), goal: goalName);
+                EternalGoal eternalGoal = new (name: contents[0].Trim(), description: contents[1].Trim(), points: int.Parse(contents[2].Trim()), goal: goalName);
                 initialGoal.Add(eternalGoal);
             }
-            else if (goalName == "☑️ Checklist Goals")
+            if (goalName == "Checklist Goals")
             {
-                CheckListGoal checkListGoal = new(name: contents[0], description: contents[1], points: int.Parse(contents[2]), goal: goalName, bonus: int.Parse(contents[3]), target: int.Parse(contents[4]));
+                CheckListGoal checkListGoal = new(name: contents[0].Trim(), description: contents[1].Trim(), points: int.Parse(contents[2].Trim()), goal: goalName, bonus: int.Parse(contents[3].Trim()), target: int.Parse(contents[4].Trim()));
+                bool isComplete = bool.Parse(contents[6]);
+                if (isComplete)
+                {
+                    checkListGoal.SetCheckMark();
+                    checkListGoal.SetIsCompleteToTrue();
+                } 
+                checkListGoal.AddSaveAmountCompleted(int.Parse(contents[5].Trim()));
                 initialGoal.Add(checkListGoal);
             }
         }
