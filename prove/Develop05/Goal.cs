@@ -17,11 +17,16 @@ public  abstract class Goal
 
     public abstract void RecordEvent();
 
-    public abstract bool isComplete(bool param);
+    public abstract bool IsComplete();
+
+    public virtual void SetIsCompleteToTrue()
+    {
+        
+    }
 
     public virtual string GetDetailsString()
     {
-        return $"{_checkBox} {_shortName} - {_description}";
+        return $"{GetCheckMark()} {_shortName} - {_description}";
     }
 
     public abstract string GetStringRepresentation();
