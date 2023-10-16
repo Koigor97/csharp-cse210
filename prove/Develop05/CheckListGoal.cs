@@ -6,6 +6,8 @@ public class CheckListGoal : Goal
     private int _target;
     private int _bonus;
 
+    private bool _isComplete = false;
+
     public CheckListGoal(string name, string description, int points, string goal, int target, int bonus) : base(name, description, points)
     {
         _typeOfGoal = goal;
@@ -15,7 +17,7 @@ public class CheckListGoal : Goal
 
     public override void RecordEvent()
     {
-        if (isComplete() && GetAmountCompleted() == _target)
+        if (IsComplete() && GetAmountCompleted() == _target)
         {
             AddSetPointToCurrentPoint();
             SetCheckMark();
@@ -24,12 +26,13 @@ public class CheckListGoal : Goal
         {
             AddSetPointToCurrentPoint();
             SetAmountCompleted();
+            _isComplete = false;
         }
     }
 
-    public override bool isComplete(bool param = false)
+    public override bool IsComplete()
     {
-        return param;
+        return _isComplete;
     }
 
     public override string GetDetailsString()
@@ -39,7 +42,7 @@ public class CheckListGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        return $"{_typeOfGoal}: {_shortName} | {_description} | {_setPoints} | {_bonus} | {_target} | {GetAmountCompleted()}";
+        return $"{_typeOfGoal}: {_shortName} | {_description} | {_setPoints} | {_bonus} | {_target} | {GetAmountCompleted()} | {IsComplete()}";
     }
 
     public void SetAmountCompleted()
@@ -51,4 +54,15 @@ public class CheckListGoal : Goal
     {
         return _amountCompleted;
     }
+
+    public override void SetIsCompleteToTrue()
+    {
+        _isComplete = true;
+    }
+
+    public void AddSaveAmountCompleted(int amount)
+    {
+        _amountCompleted = amount;
+    }
+
 }
