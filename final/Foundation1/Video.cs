@@ -7,6 +7,7 @@ public class Video
     private int _videoLength;
     private List<Comment> _comments = new();
 
+    // *args kwarg*
     public void SetVideoMeta(params object[] args)
     {
         _author = args[0].ToString();
