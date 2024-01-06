@@ -30,7 +30,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Console.WriteLine("Hello World");
+       
         TallGuy tallGuy = new (name: "Samuel", hieght: 6.7);
         tallGuy.TalkAboutYourself();
 
